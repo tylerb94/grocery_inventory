@@ -17,7 +17,7 @@
             die();
         }else{
             if(password_verify($_POST["password"], $search[1])){
-                setcookie("username", $_POST["username"], time() + (86400 * 30), "/");
+                setcookie("username", $_POST["username"], time() + (86400 * 365), "/");
                 header("Location: index.php");
                 die();
             }

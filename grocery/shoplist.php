@@ -24,7 +24,6 @@ if(!isset($_COOKIE["username"])){
     // start building table
     echo "<table>";
 
-    echo sizeof($result);
     while($result=$search->fetch_row()){
 
         // Grab relevant data

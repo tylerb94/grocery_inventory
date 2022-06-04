@@ -18,7 +18,10 @@
             $hashed = password_hash($_POST["password"], PASSWORD_DEFAULT);
             $sql = "INSERT INTO login (username, password) VALUES (\"".$_POST["username"]."\", \"".$hashed."\");";
             $conn->query($sql);
-            setcookie("username", $_POST["username"], time() + (86400 * 30), "/");
+            $conn->close();
+
+            $conn2 = new mysqli($server, $username, $password, "grocery");
+            setcookie("username", $_POST["username"], time() + (86400 * 365), "/");
 
 
             // Create new table
@@ -30,8 +33,9 @@
                 `description` varchar(999) COLLATE 'utf8mb4_general_ci' NOT NULL,
                 `image` varchar(999) COLLATE 'utf32_general_ci' NOT NULL
               ) ENGINE='InnoDB' COLLATE 'utf8mb4_general_ci';";
-            conn.query($sql);
-            
+            echo $sql;
+            $conn2->query($sql);
+
             header("Location: index.php");
             die();
 
