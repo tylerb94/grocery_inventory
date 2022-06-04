@@ -1,0 +1,27 @@
+body{
+    background-color: rgb(77, 85, 92);
+    font-size: 42pt;
+}
+#homebutton{
+    border: 1px solid black;
+    background-color: aquamarine;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+table{
+    width: 100%;
+    font-size: 42pt;
+}
+input[type="checkbox"]{
+    transform: scale(5);
+    margin-left: 50px;
+    margin-right: 50px;
+}
+td{
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
