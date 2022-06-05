@@ -8,18 +8,28 @@ if(!isset($_COOKIE["username"])){
 
     // CSS
     echo "<link rel=\"stylesheet\" href=\"details.css\">";
+    // Top bar
+    echo "<table id=\"producttable\">";
+    echo "<tr>";
+    echo "<td><a href=\"settings.php\"><img src=\"ico/settings.png\" width=\"60px\"></a></td>";   // settings button
+    echo "<td>Logged in as ".$_COOKIE["username"]."</td>";
+    echo "<td><a href=\"logout.php\"><img src=\"ico/exit.png\" width=\"60px\"></a></td>";       // logout button
+    echo "</tr>";
     // Home Link
-    echo "<a id=\"homebutton\" href=\"index.php\">Home</a><hr><hr><hr>";
+    echo "<tr><td colspan=\"3\" align=\"left\">";
+    echo "<a id=\"homebutton\" href=\"index.php\">Home</a>";
+    echo "</td></tr>";
+    echo "</table>";
 
 
-    if($_GET["upc"] != ''){
+    if($_POST["upc"] != '' or $_GET["upc"] != ''){
         // Connect to SQL
         $server = "localhost";
         $username = "root";
         $password = "et-1331g";
         $database = "grocery";
         $conn = new mysqli($server, $username, $password, $database);
-        $upc = $_GET["upc"];
+        $upc = $_POST["upc"].$_GET["upc"];
         $sql = "SELECT * FROM ".$_COOKIE["username"]." WHERE `upc` = \"".$upc."\";";
         $search = $conn->query($sql);
         $result = $search->fetch_row();
@@ -37,7 +47,7 @@ if(!isset($_COOKIE["username"])){
         echo "<br>".$result[4];
         echo "<br>".$result[5];*/
 
-        echo "<table>";
+        echo "<table id=\"details\">";
 
         // item name
         echo "<tr>";

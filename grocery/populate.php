@@ -8,8 +8,18 @@ if(!isset($_COOKIE["username"])){
 
     // CSS
     echo "<link rel=\"stylesheet\" href=\"populate.css\">";
+    // Top bar
+    echo "<table>";
+    echo "<tr>";
+    echo "<td><a href=\"settings.php\"><img src=\"ico/settings.png\" width=\"60px\"></a></td>";   // settings button
+    echo "<td>Logged in as ".$_COOKIE["username"]."</td>";
+    echo "<td><a href=\"logout.php\"><img src=\"ico/exit.png\" width=\"60px\"></a></td>";       // logout button
+    echo "</tr>";
     // Home Link
-    echo "<a href=\"index.php\">Home</a><hr><hr><hr>";
+    echo "<tr><td colspan=\"3\" align=\"left\">";
+    echo "<a id=\"homebutton\" href=\"index.php\">Home</a>";
+    echo "</td></tr>";
+    echo "</table>";
     // Connect to SQL
     $server = "localhost";
     $username = "root";
@@ -30,7 +40,7 @@ if(!isset($_COOKIE["username"])){
     $search = $conn->query("SELECT * FROM ".$_COOKIE["username"]." WHERE `name`=\"\" OR `image`=\"\"");
 
     echo "<form action=\"populate.php\" method=\"POST\">";
-    echo "<table style=\"font-size: 16pt;\">";
+    echo "<table id=\"producttable\" style=\"font-size: 16pt;\">";
     echo "<thead><tr>";
     echo "<th>UPC</th>";
     echo "<th>Name</th>";

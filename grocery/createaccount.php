@@ -1,5 +1,6 @@
 <?php
 
+    // entry from form
     if($_POST["username"] != ''){
 
         // Connect to SQL
@@ -43,19 +44,35 @@
             echo "This username is already taken.";
         }
 
+    // entry from login page
     }else{
+
+        echo "<link rel=\"stylesheet\" href=\"login.css\">";
         echo "<form method=\"POST\" action=\"createaccount.php\">";
 
-        echo "<label for=\"username\">Username</label>";
-        echo "<input name=\"username\"type=\"text\">";
-        echo "<br>";
-
-        echo "<label for=\"password\">Password</label>";
-        echo "<input name=\"password\" type=\"password\">";
-        echo "<br>";
+        // Username textbox
+        $username = "";
+        if(isset($_GET["username"])){
+            $username = $_GET["username"];
+            echo "<p id=\"makeaccountmessage\">Username does not exist. Sign up to continue.<p>";
+        }
+        echo "<table><tr>";
+        echo "<td><label for=\"username\">Username</label></td>";
+        echo "<td><input name=\"username\"type=\"text\" value=\"".$username."\"></td>";
+        echo "</tr>";
         
-        echo "<input type=\"submit\" href=\"\" value=\"Sign Up\">";
-
+        // Password textbox
+        echo "<tr>";
+        echo "<td><label for=\"password\">Password</label></td>";
+        echo "<td><input name=\"password\" type=\"password\"></td>";
+        echo "</tr>";
+        
+        // login button
+        echo "<tr><td colspan=\"2\" align=\"center\">";
+        echo "<input type=\"submit\" href=\"\" value=\"Create New Account\">";
+        echo "</td></tr>";
+        echo "<table>";
+    
         echo "</form>";
     }
 

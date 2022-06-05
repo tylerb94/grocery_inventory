@@ -1,5 +1,26 @@
 body{
     background-color: rgb(52, 61, 70);
+    color: white;
+}
+table{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 42pt;
+    margin-bottom: 50px;
+}
+#homebutton{
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: rgb(23, 26, 29);
+    color: rgb(255, 255, 255);
+    font-size: 46px;
+    padding: 5px;
+    margin: 0px;
+    margin-top: 10px;
+    text-decoration: none;
 }
 p{
     display: inline;
@@ -7,24 +28,39 @@ p{
 input{
     display: inline;
 }
-table{
+#producttable{
     margin-left: auto;
     margin-right: auto;
+    font-size: 32pt;
 }
-th{
+#producttable.th{
     background-color: black;
     color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 36pt;
 }
-tr{
+#producttable.tr{
     border: 1px solid black;
 }
-td{
+#producttable.td{
     border: 1px solid black;
     padding-left: 10px;
     padding-right: 10px;
+    font-size: 36pt;
+    text-align: center;
 }
 input[type="submit"]{
     text-align: right;
     display: inline;
     border: 2px solid black;
+    font-size: 36pt;
+}
+#spinbox{
+    height: 100%;
+    margin: none;
+}
+#item{
+    color: black;
+    text-decoration: none;
 }

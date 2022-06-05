@@ -8,8 +8,20 @@ if(!isset($_COOKIE["username"])){
 
     // CSS
     echo "<link rel=\"stylesheet\" href=\"shoplist.css\">";
+    // Top bar
+    echo "<table id=\"producttable\">";
+    echo "<tr>";
+    echo "<td><a href=\"settings.php\"><img src=\"ico/settings.png\" width=\"60px\"></a></td>";   // settings button
+    echo "<td>Logged in as ".$_COOKIE["username"]."</td>";
+    echo "<td><a href=\"logout.php\"><img src=\"ico/exit.png\" width=\"60px\"></a></td>";       // logout button
+    echo "</tr>";
     // Home Link
-    echo "<a id=\"homebutton\" href=\"index.php\">Home</a><hr><hr><hr>";
+    echo "<tr><td colspan=\"3\" align=\"left\">";
+    echo "<a id=\"homebutton\" href=\"index.php\">Home</a>";
+    echo "</td></tr>";
+    echo "</table>";
+
+    echo "<hr>";
 
     // Connect to SQL
     $server = "localhost";
@@ -22,7 +34,7 @@ if(!isset($_COOKIE["username"])){
     $search = $conn->query($sql);
 
     // start building table
-    echo "<table>";
+    echo "<table id=\"producttable\">";
 
     while($result=$search->fetch_row()){
 
@@ -46,7 +58,7 @@ if(!isset($_COOKIE["username"])){
             $upc_dashed = $upc[0]." - ".$upc[1].$upc[2].$upc[3].$upc[4].$upc[5]."\n".$upc[6].$upc[7].$upc[8].$upc[9].$upc[10]." - ".$upc[11];
 
             // Start row
-            echo "<tr>";
+            echo "<tr id=\"item\">";
 
             // Checkbox / qty / text
             echo "<td><input id=\"check\" type=\"checkbox\"></td>";

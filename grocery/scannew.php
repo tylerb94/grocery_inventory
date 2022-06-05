@@ -7,9 +7,19 @@ if(!isset($_COOKIE["username"])){
 }
 
     // CSS
-    echo "<link rel=\"stylesheet\" href=\"style.css\">";
+    echo "<link rel=\"stylesheet\" href=\"scannew.css\">";
+    // Top bar
+    echo "<table>";
+    echo "<tr>";
+    echo "<td><a href=\"settings.php\"><img src=\"ico/settings.png\" width=\"60px\"></a></td>";   // settings button
+    echo "<td>Logged in as ".$_COOKIE["username"]."</td>";
+    echo "<td><a href=\"logout.php\"><img src=\"ico/exit.png\" width=\"60px\"></a></td>";       // logout button
+    echo "</tr>";
     // Home Link
-    echo "<a href=\"index.php\">Home</a><hr><hr><hr>";
+    echo "<tr><td colspan=\"3\" align=\"left\">";
+    echo "<a id=\"homebutton\" href=\"index.php\">Home</a>";
+    echo "</td></tr>";
+    echo "</table>";
 
     // CHECK IF UPC WAS SCANNED
     $upc = $_POST['upc'];
@@ -29,7 +39,7 @@ if(!isset($_COOKIE["username"])){
         if($result==""){
             // If upc not in inventory
             $sql = "INSERT INTO ".$_COOKIE["username"]." (`upc`, `qty`, `qty_goal`, `name`, `description`, `image`) VALUES (\"".$upc."\", \"1\", \"1\", \"".""."\", \"".""."\", \"".""."\")";
-            echo "<p>Added unknown item to inventory.</p>";
+            echo "<p id=\"message\">Added unknown item to inventory.</p>";
             $conn->query($sql);
 
         }else{
@@ -40,7 +50,7 @@ if(!isset($_COOKIE["username"])){
             $conn->query($sql);
             $name = $result[3];
             if($name == ''){$name="UNKNOWN ITEM NAME";}
-            echo "<p>Item Found. Increasing Quantity by 1</p><hr><p>".$name."</p>";
+            echo "<p id=\"message\">Item Found. Increasing Quantity by 1</p><p id=\"message\">".$name."</p>";
 
         }
 

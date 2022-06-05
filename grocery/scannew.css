@@ -22,35 +22,27 @@ table{
     margin-top: 10px;
     text-decoration: none;
 }
-#details.table{
-    margin-left: auto;
-    margin-right: auto;
-    width: 85%;
-}
-#image{
-    width: 500px;
-
-}
-#itemname{
-    font-size: 42pt;
-    text-align: center;
-}
-#stock{
-    text-align: center;
+input[type="text"]{
+    width: 100%;
     font-size: 38pt;
-    border: 2px inset black;
-    background-color: rgb(27, 29, 31);
-    width: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 25px;
+    border: none;
+}
+input[type="image"]{
+    width: 60px;
+    margin-left: 25px;
+    margin-right: 25px;
     margin-top: 10px;
+    margin-bottom: 10px;
+    
 }
-#desc{
-    text-align: left;
-    font-size: 26pt;
-    border: 2px inset black;
+input[type="image"]{
+    width: 35px;
+    height: 35px;
 }
-#barcode{
-    width: 70%;
+#message{
+    font-size: 36pt;
+    text-align: center;
+}
+#producttable.td{
+    border-bottom: 1px solid black;
 }
