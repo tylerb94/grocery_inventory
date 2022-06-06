@@ -3,12 +3,8 @@
     // entry from form
     if($_POST["username"] != ''){
 
-        // Connect to SQL
-        $server = "localhost";
-        $username = "root";
-        $password = "et-1331g";
-        $database = "users";
-        $conn = new mysqli($server, $username, $password, $database);
+        // Connect to login database
+        include "pageparts/connectlogin.php";
 
         $sql = "SELECT * FROM login WHERE username=\"".$_POST["username"]."\";";
         $search = $conn->query($sql)->fetch_row();
@@ -17,28 +13,42 @@
 
             // Create a new user account
             $hashed = password_hash($_POST["password"], PASSWORD_DEFAULT);
-            $sql = "INSERT INTO login (username, password) VALUES (\"".$_POST["username"]."\", \"".$hashed."\");";
-            $conn->query($sql);
-            $conn->close();
+            $c_hashed = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-            $conn2 = new mysqli($server, $username, $password, "grocery");
-            setcookie("username", $_POST["username"], time() + (86400 * 365), "/");
+            // if passwords are blank
+            if($_POST["password"] == "" or $_POST["password"] == ""){
+                echo "Password cannot be blank.";
+            }
+            // if passwords do not match
+            else if($hashed != $c_hashed){
+                echo "Passwords do not match.";
+
+            // passwords match. create account and go to index.php
+            }else{
+
+                $sql = "INSERT INTO login (username, password) VALUES (\"".$_POST["username"]."\", \"".$hashed."\");";
+                $conn->query($sql);
+                $conn->close();
+
+                $conn2 = new mysqli($server, $username, $password, "grocery");
+                setcookie("username", $_POST["username"], time() + (86400 * 365), "/");
 
 
-            // Create new table
-            $sql = "CREATE TABLE `".$_POST["username"]."` (
-                `upc` varchar(20) COLLATE 'utf8mb4_general_ci' NOT NULL,
-                `qty` int(11) NOT NULL,
-                `qty_goal` int(11) NOT NULL,
-                `name` varchar(99) COLLATE 'utf8mb4_general_ci' NOT NULL,
-                `description` varchar(999) COLLATE 'utf8mb4_general_ci' NOT NULL,
-                `image` varchar(999) COLLATE 'utf32_general_ci' NOT NULL
-              ) ENGINE='InnoDB' COLLATE 'utf8mb4_general_ci';";
-            echo $sql;
-            $conn2->query($sql);
+                // Create new table
+                $sql = "CREATE TABLE `".$_POST["username"]."` (
+                    `upc` varchar(20) COLLATE 'utf8mb4_general_ci' NOT NULL,
+                    `qty` int(11) NOT NULL,
+                    `qty_goal` int(11) NOT NULL,
+                    `name` varchar(99) COLLATE 'utf8mb4_general_ci' NOT NULL,
+                    `description` varchar(999) COLLATE 'utf8mb4_general_ci' NOT NULL,
+                    `image` varchar(999) COLLATE 'utf32_general_ci' NOT NULL
+                ) ENGINE='InnoDB' COLLATE 'utf8mb4_general_ci';";
+                echo $sql;
+                $conn2->query($sql);
 
-            header("Location: index.php");
-            die();
+                header("Location: index.php");
+                die();
+            }
 
         }else{
             echo "This username is already taken.";
@@ -48,23 +58,32 @@
     }else{
 
         echo "<link rel=\"stylesheet\" href=\"login.css\">";
+
+        // Logo
+        echo "<div><img id=\"logo\" src=\"img/logo.png\"></div>";
+
         echo "<form method=\"POST\" action=\"createaccount.php\">";
 
         // Username textbox
         $username = "";
         if(isset($_GET["username"])){
             $username = $_GET["username"];
-            echo "<p id=\"makeaccountmessage\">Username does not exist. Sign up to continue.<p>";
-        }
-        echo "<table><tr>";
+            echo "<p id=\"makeaccountmessage\">Username does not exist. Sign up to continue.<p>";}
+        echo "<table><tr id=\"formlabel\">";
         echo "<td><label for=\"username\">Username</label></td>";
         echo "<td><input name=\"username\"type=\"text\" value=\"".$username."\"></td>";
         echo "</tr>";
         
         // Password textbox
-        echo "<tr>";
+        echo "<tr id=\"formlabel\">";
         echo "<td><label for=\"password\">Password</label></td>";
         echo "<td><input name=\"password\" type=\"password\"></td>";
+        echo "</tr>";
+
+        // Password textbox
+        echo "<tr id=\"formlabel\">";
+        echo "<td><label for=\"c_password\">Confirm Password</label></td>";
+        echo "<td><input name=\"c_password\" type=\"password\"></td>";
         echo "</tr>";
         
         // login button

@@ -1,20 +1,26 @@
 body{
-    background-color: rgb(77, 85, 92);
+    background-color: rgb(52, 61, 70);
+    color: white;
+}
+table{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 42pt;
+    margin-bottom: 50px;
 }
 #homebutton{
     border: 1px solid black;
-    background-color: aquamarine;
-    color: rgb(0, 0, 0);
+    border-radius: 3px;
+    background-color: rgb(23, 26, 29);
+    color: rgb(255, 255, 255);
+    font-size: 46px;
+    padding: 5px;
+    margin: 0px;
+    margin-top: 10px;
     text-decoration: none;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-table{
-    margin-left: auto;
-    margin-right: auto;
-    width: 95%;
-    text-align: right;
 }
 input[type="text"]{
     width: 100%;

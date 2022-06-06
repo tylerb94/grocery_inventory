@@ -23,12 +23,10 @@ if(!isset($_COOKIE["username"])){
 
 
     if($_POST["upc"] != '' or $_GET["upc"] != ''){
-        // Connect to SQL
-        $server = "localhost";
-        $username = "root";
-        $password = "et-1331g";
-        $database = "grocery";
-        $conn = new mysqli($server, $username, $password, $database);
+        
+        // Connect to grocery database
+        include "pageparts/connectgrocery.php";
+
         $upc = $_POST["upc"].$_GET["upc"];
         $sql = "SELECT * FROM ".$_COOKIE["username"]." WHERE `upc` = \"".$upc."\";";
         $search = $conn->query($sql);

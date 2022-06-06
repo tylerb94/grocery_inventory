@@ -25,12 +25,8 @@ if(!isset($_COOKIE["username"])){
     $upc = $_POST['upc'];
     if($upc != ""){
     
-        // Connect to SQL
-        $server = "localhost";
-        $username = "root";
-        $password = "et-1331g";
-        $database = "grocery";
-        $conn = new mysqli($server, $username, $password, $database);
+        // Connect to grocery database
+        include "pageparts/connectgrocery.php";
 
         // Check if UPC is on table
         $search = $conn->query("SELECT * FROM ".$_COOKIE["username"]." WHERE `upc`=\"".$upc."\"");

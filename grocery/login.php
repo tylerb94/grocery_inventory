@@ -3,12 +3,8 @@
     // login info entered
     if($_POST["username"] != ''){
 
-        // Connect to SQL
-        $server = "localhost";
-        $username = "root";
-        $password = "et-1331g";
-        $database = "users";
-        $conn = new mysqli($server, $username, $password, $database);
+        // Connect to login database
+        include "pageparts/connectlogin.php";
 
         // search for user
         $sql = "SELECT * FROM login WHERE username=\"".$_POST["username"]."\";";
@@ -42,8 +38,11 @@
     }else{
 
         echo "<link rel=\"stylesheet\" href=\"login.css\">";
-        echo "<form method=\"POST\" action=\"login.php\">";
 
+        // Logo
+        echo "<div><img id=\"logo\" src=\"img/logo.png\"></div>";
+
+        echo "<form method=\"POST\" action=\"login.php\">";
         // Username textbox
         echo "<table><tr>";
         echo "<td><label for=\"username\">Username</label></td>";

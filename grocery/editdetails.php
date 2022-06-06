@@ -5,22 +5,12 @@
         die();
     }else{
     }
-
-    // CSS
-    echo "<link rel=\"stylesheet\" href=\"editdetails.css\">";
-    // Home Link
-    echo "<a id=\"homebutton\" href=\"index.php\">Home</a><hr><hr><hr>";
-
-
+    
+    // Update new submitted data
     if($_POST['upc'] != ''){
 
-
-        // Connect to SQL
-        $server = "localhost";
-        $username = "root";
-        $password = "et-1331g";
-        $database = "grocery";
-        $conn = new mysqli($server, $username, $password, $database);
+        // Connect to grocery database
+        include "pageparts/connectgrocery.php";
         
         $upc = $_POST["upc"];
         $name = $_POST["name"];
@@ -35,6 +25,7 @@
 
         echo "Updated: ".$name;
 
+    // Show data to user to edit
     }else if($_GET["upc"] != ''){
 
         // Connect to SQL
@@ -52,6 +43,10 @@
         $desc = $result[4];
         $image = $result[5];
 
+        // CSS
+        echo "<link rel=\"stylesheet\" href=\"editdetails.css\">";
+        include "pageparts/header_2.php";
+
         echo "<form method=\"POST\">";
         echo "<table>";
 
@@ -64,6 +59,7 @@
         echo "</table>";
         echo "</form>";
 
+    // UPC does not exist in database
     }else{
         echo "UPC not found.";
     }

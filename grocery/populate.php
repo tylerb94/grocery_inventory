@@ -5,27 +5,8 @@ if(!isset($_COOKIE["username"])){
     die();
 }else{
 }
-
-    // CSS
-    echo "<link rel=\"stylesheet\" href=\"populate.css\">";
-    // Top bar
-    echo "<table>";
-    echo "<tr>";
-    echo "<td><a href=\"settings.php\"><img src=\"ico/settings.png\" width=\"60px\"></a></td>";   // settings button
-    echo "<td>Logged in as ".$_COOKIE["username"]."</td>";
-    echo "<td><a href=\"logout.php\"><img src=\"ico/exit.png\" width=\"60px\"></a></td>";       // logout button
-    echo "</tr>";
-    // Home Link
-    echo "<tr><td colspan=\"3\" align=\"left\">";
-    echo "<a id=\"homebutton\" href=\"index.php\">Home</a>";
-    echo "</td></tr>";
-    echo "</table>";
-    // Connect to SQL
-    $server = "localhost";
-    $username = "root";
-    $password = "et-1331g";
-    $database = "grocery";
-    $conn = new mysqli($server, $username, $password, $database);
+    // Connect to grocery database
+    include "pageparts/connectgrocery.php";
 
     foreach($_POST as $key => $value){
         $sql = "";
@@ -39,15 +20,26 @@ if(!isset($_COOKIE["username"])){
     
     $search = $conn->query("SELECT * FROM ".$_COOKIE["username"]." WHERE `name`=\"\" OR `image`=\"\"");
 
-    echo "<form action=\"populate.php\" method=\"POST\">";
-    echo "<table id=\"producttable\" style=\"font-size: 16pt;\">";
-    echo "<thead><tr>";
-    echo "<th>UPC</th>";
-    echo "<th>Name</th>";
-    echo "<th>Image Link</th>";
-    echo "</tr></thead>";
+    // CSS
+    echo "<link rel=\"stylesheet\" href=\"populate.css\">";
+
+    // header
+    include "pageparts/header_2.php";
+
+    
     $count = 0;
     while($result=$search->fetch_row()){
+
+        // only draw header table the first time
+        if($count == 0){
+            echo "<form action=\"populate.php\" method=\"POST\">";
+            echo "<table id=\"producttable\" style=\"font-size: 16pt;\">";
+            echo "<thead><tr>";
+            echo "<th>UPC</th>";
+            echo "<th>Name</th>";
+            echo "<th>Image Link</th>";
+            echo "</tr></thead>";
+        }
 
         $upc = $result[0];
         $item_url = "https://www.upcitemdb.com/upc/".$upc;
@@ -65,6 +57,7 @@ if(!isset($_COOKIE["username"])){
 
         // Image link textbox
         echo "<td><input type=\"text\" name=\"".$upc."_image\" value=\"".$image."\"></td>";
+
         echo "</tr>";
         $count++;
         

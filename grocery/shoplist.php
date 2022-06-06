@@ -23,12 +23,8 @@ if(!isset($_COOKIE["username"])){
 
     echo "<hr>";
 
-    // Connect to SQL
-    $server = "localhost";
-    $username = "root";
-    $password = "et-1331g";
-    $database = "grocery";
-    $conn = new mysqli($server, $username, $password, $database);
+    // Connect to grocery database
+    include "pageparts/connectgrocery.php";
 
     $sql = "SELECT * FROM ".$_COOKIE["username"]." WHERE `upc`;";
     $search = $conn->query($sql);
@@ -36,6 +32,7 @@ if(!isset($_COOKIE["username"])){
     // start building table
     echo "<table id=\"producttable\">";
 
+    $count = 0;
     while($result=$search->fetch_row()){
 
         // Grab relevant data
@@ -64,14 +61,17 @@ if(!isset($_COOKIE["username"])){
             echo "<td><input id=\"check\" type=\"checkbox\"></td>";
             echo "<td>".$needed."x&nbsp;</td>";
             echo "<td>".$name."</td>";
-            // image
-            //echo "<td><img id=\"shoplistimg\" src=\"".$img_url."\" style=\"width:150px;\"></td>";
-            // upc
             echo "<td><a id=\"upc\" href=\"".$item_url."\" target=\"_blank\">[INFO]</a></td>";
 
             // End row
             echo "</tr>";
+
+            if($count <= sizeof($search)){
+                echo "<tr><td colspan=\"4\"><hr id=\"itemseparator\"></td></tr>";
+            }
         }
+
+        $count++;
         
     }
 

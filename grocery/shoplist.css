@@ -33,10 +33,6 @@ table{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-#item.td{
-    margin-bottom: 50px;
-    border-bottom: 1px solid black;
-}
 p{
     font-size: 350%;
     display: inline;
@@ -48,7 +44,7 @@ input[type='text']{
 }
 
 input[type='checkbox'] {
-    -webkit-appearance:none;
+    -webkit-appearance:listitem;
     margin-top: 10px;
     width:60px;
     height:60px;
@@ -68,4 +64,12 @@ input[type='checkbox']:checked {
     display: block;
     text-align: right;
     margin-right: 10px;
+}
+#itemseparator{
+    margin: auto 100px;
+    margin-top: 50px;
+    margin-top: 50px;
+    height: 5px;
+    background-color: rgb(23, 26, 29);
+    border: none;
 }

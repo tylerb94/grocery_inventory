@@ -6,12 +6,8 @@ if(!isset($_COOKIE["username"])){
 }else{
 }
 
-    // Connect to SQL
-    $server = "localhost";
-    $username = "root";
-    $password = "et-1331g";
-    $database = "grocery";
-    $conn = new mysqli($server, $username, $password, $database);
+    // Connect to grocery database
+    include "pageparts/connectgrocery.php";
 
     // Set everything in inventory to qty=0
     $search = $conn->query("SELECT * FROM ".$_COOKIE["username"]." WHERE `upc`");
