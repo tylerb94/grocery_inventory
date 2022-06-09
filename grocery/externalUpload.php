@@ -36,10 +36,9 @@ if(!isset($_COOKIE["username"])){
         $sql = "INSERT INTO ".$username." (`upc`, `qty`, `qty_goal`, `name`, `description`, `image`)";
         $sql = $sql." VALUES (\"".$upc."\", \"".$qty."\", \"".$qty_goal."\", \"".$name."\", \"".$description."\", \"".$image."\");";
         $conn->query($sql);
-        echo $sql;
     }
     $conn->close();
-    //echo "<script>window.close();</script>";
+    echo "<script>window.close();</script>";
 }
     
 ?>
