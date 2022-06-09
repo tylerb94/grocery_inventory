@@ -4,7 +4,6 @@ if(!isset($_COOKIE["username"])){
     header("Location: login.php");
     die();
 }else{
-}
 
     // CSS
     echo "<link rel=\"stylesheet\" href=\"scannew.css\">";
@@ -57,5 +56,7 @@ if(!isset($_COOKIE["username"])){
     echo "<form action=\"scannew.php\" method=\"POST\">";
     echo "<input type=\"text\" name=\"upc\" placeholder=\"Add Item - Scan UPC\" autofocus>";
     echo "</form>";
+
+}// CHANGED: MOVED THIS BRACKET TO PUT PAGE INSIDE "ELSE"
 
 ?>

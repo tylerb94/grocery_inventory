@@ -39,6 +39,12 @@
 
         echo "<link rel=\"stylesheet\" href=\"login.css\">";
 
+        // BETA TESTING MESSAGE -- REMOVE LATER
+        echo "<div id=\"betamessage\">";
+        echo "This site is still being tested, and is subject to change at any time. Your data may disappear.";
+        echo "</div>";
+        // END BETA TESTING MESSAGE -- REMOVE LATER
+
         // Logo
         echo "<div><img id=\"logo\" src=\"img/logo.png\"></div>";
 

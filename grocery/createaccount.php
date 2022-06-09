@@ -13,14 +13,14 @@
 
             // Create a new user account
             $hashed = password_hash($_POST["password"], PASSWORD_DEFAULT);
-            $c_hashed = password_hash($_POST["password"], PASSWORD_DEFAULT);
+            $c_hashed = password_hash($_POST["c_password"], PASSWORD_DEFAULT);
 
             // if passwords are blank
             if($_POST["password"] == "" or $_POST["password"] == ""){
                 echo "Password cannot be blank.";
             }
             // if passwords do not match
-            else if($hashed != $c_hashed){
+            else if($_POST["password"] != $_POST["c_password"]){
                 echo "Passwords do not match.";
 
             // passwords match. create account and go to index.php
@@ -30,7 +30,7 @@
                 $conn->query($sql);
                 $conn->close();
 
-                $conn2 = new mysqli($server, $username, $password, "grocery");
+                include "pageparts/connectgrocery.php";
                 setcookie("username", $_POST["username"], time() + (86400 * 365), "/");
 
 
@@ -44,7 +44,7 @@
                     `image` varchar(999) COLLATE 'utf32_general_ci' NOT NULL
                 ) ENGINE='InnoDB' COLLATE 'utf8mb4_general_ci';";
                 echo $sql;
-                $conn2->query($sql);
+                $conn->query($sql);
 
                 header("Location: index.php");
                 die();

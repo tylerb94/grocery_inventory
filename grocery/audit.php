@@ -11,7 +11,9 @@ if(!isset($_COOKIE["username"])){
 
     // Set everything in inventory to qty=0
     $search = $conn->query("SELECT * FROM ".$_COOKIE["username"]." WHERE `upc`");
+    echo "WORKING...";
     while($result=$search->fetch_row()){
+        echo "WORKING...";
         $upc = $result[0];
         $sql = "UPDATE ".$_COOKIE["username"]." SET qty = \"0\" WHERE `upc`=\"".$upc."\"";
         $conn->query($sql);
